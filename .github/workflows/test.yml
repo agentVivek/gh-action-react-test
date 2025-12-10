@@ -1,0 +1,16 @@
+name: Test
+on: push
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Get code #Download repo code into runner
+        uses: actions/checkout@v3
+      - name: Install NodeJs #Though runner has nodejs as preinstalled software but we need the specific node version here  
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Install Dependencies
+        run: npm ci 
+      - name: Run tests
+        run: npm test
